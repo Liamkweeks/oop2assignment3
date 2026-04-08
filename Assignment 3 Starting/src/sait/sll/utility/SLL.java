@@ -4,16 +4,21 @@ import java.io.Serializable;
 
 public class SLL implements LinkedListADT, Serializable
 {
-
+	//Constructor, should implement node and link(?) 
+	public SLL()
+	{
+		
+	}
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4207147896437339801L;
-
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		if(size() != 0)
+			return false;
+		else
+			return true;
 	}
 
 	@Override
