@@ -19,7 +19,7 @@ class LinkedListTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		// Create your concrete linked list class and assign to to linkedList.
-		//this.linkedList = new SLL();
+		this.linkedList = new SLL();
 	}
 
 	/**
@@ -83,7 +83,6 @@ class LinkedListTest {
 		this.linkedList.prepend("b");
 		this.linkedList.prepend("c");
 		this.linkedList.prepend("d");
-		
 		/**
 		 * Linked list should now be:
 		 * 
