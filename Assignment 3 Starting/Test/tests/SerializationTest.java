@@ -23,7 +23,7 @@ class SerializationTest {
 		this.oos = new ObjectOutputStream(this.baos);
 		
 		// Create your implemented linked list here and assign to the linkedList attribute.
-		this.users = new SLL(); 
+		this.users = new SLL();
 		this.users.append(new User(1, "Joe Blow", "jblow@gmail.com", "password"));
 		this.users.append(new User(2, "Joe Schmoe", "joe.schmoe@outlook.com", "abcdef"));
 		this.users.append(new User(3, "Colonel Sanders", "chickenlover1890@gmail.com", "kfc5555"));
@@ -72,6 +72,11 @@ class SerializationTest {
 		
 		User expectedUser1 = new User(1, "Joe Blow", "jblow@gmail.com", null);
 		User actualUser1 = (User) users.retrieve(0);
+		//test REMOVE FROM FINAL VERSION
+		System.out.println(actualUser1.password);
+		System.out.println(expectedUser1.password);
+		System.out.println(actualUser1.name);
+		System.out.println(expectedUser1.name);
 		
 		assertEquals(expectedUser1, actualUser1);
 		assertTrue(actualUser1.isCorrectPassword(null));

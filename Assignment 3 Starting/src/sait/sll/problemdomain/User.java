@@ -15,12 +15,12 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1711796045811471046L;
 
 	private int id;
-	
-	private String name;
+	//Change back to private after testing!!!
+	public String name;
 	
 	private String email;
-	
-	private String password;
+	//change back to private after testing!!!
+	public String password;
 	
 	/**
 	 * Creates a User object with specified arguments.
