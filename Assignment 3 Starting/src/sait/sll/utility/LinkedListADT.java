@@ -81,4 +81,8 @@ public interface LinkedListADT
 	 * @return true if element containing data exists, false otherwise.
 	 */
 	boolean contains(Object data);
+	
+	void display();
+	
+	Node getHead();
 }
