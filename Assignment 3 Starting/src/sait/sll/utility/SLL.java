@@ -104,7 +104,22 @@ public class SLL implements LinkedListADT, Serializable
 	@Override
 	public void replace(Object data, int index) throws IndexOutOfBoundsException 
 	{
-	
+		
+		
+		if(index < 0 || index > size)
+		{
+			throw new IndexOutOfBoundsException();
+			
+		}
+		Node currentNode = head;
+		int currentIndex = 0;
+		while(currentIndex < index)
+			{
+				currentNode = currentNode.getNext();
+				currentIndex++;
+			}
+			currentNode.setData(data);
+
 	}
 
 	@Override
@@ -114,11 +129,50 @@ public class SLL implements LinkedListADT, Serializable
 	}
 
 	@Override
-	public void delete(int index) throws IndexOutOfBoundsException 
+	public void delete(int index)
 	{
-	
+		if(index < 0 || index >= size)
+		{
+			throw new IndexOutOfBoundsException();
+		}
+		else
+		{
+			if(size == 1)
+			{
+				tail = head = null;
+			}
+			else if(index == 0)
+			{
+				head = head.getNext();
+			}
+			else if(index == size-1)
+			{
+				Node prevNode = head;
+				int prevIndex = 0;
+				while(prevIndex < index-1)
+				{
+					prevNode = prevNode.getNext();
+					prevIndex++;
+				}
+				prevNode.setNext(null);
+				tail = prevNode;
+				
+			}
+			else
+				{
+					Node prevNode = head;
+					int prevIndex = 0;
+					while(prevIndex < index - 1)
+					{
+						prevNode = prevNode.getNext();
+						prevIndex++;
+					}
+					prevNode.setNext(prevNode.getNext().getNext());
+				}
+			size--;
+			
+		}
 	}
-
 	@Override
 	public Object retrieve(int index) throws IndexOutOfBoundsException 
 	{
@@ -137,15 +191,51 @@ public class SLL implements LinkedListADT, Serializable
 	}
 
 	@Override
-	public int indexOf(Object data) 
+	public int indexOf(Object data)
 	{
-		return 0;
+		int currentIndex = 0;
+		Node currentNode = head;
+		while(currentNode.getData() != data)
+		{
+			currentNode = currentNode.getNext();
+			currentIndex++;
+		}
+		return currentIndex;
 	}
 
 	@Override
 	public boolean contains(Object data) 
 	{
+		
+		Node currentNode = head;
+		while(currentNode != data)
+		{
+			System.out.println(currentNode.getData());
+			if(currentNode.getData().equals(data))
+			{
+				return true;
+			}
+			currentNode = currentNode.getNext();
+		}
 		return false;
 	}
-
+	@Override
+	 public void display() {
+	        if(size == 0) {
+	            System.out.println("List is empty");
+	            return;
+	        }
+	        
+	        Node current = head;
+	        System.out.println("List: ");
+	        while(current != null) {
+	            System.out.println(current.getData());
+	            current = current.getNext();
+	        }
+	    }
+	@Override
+	public Node getHead()
+	{
+		return head;	
+	}
 }

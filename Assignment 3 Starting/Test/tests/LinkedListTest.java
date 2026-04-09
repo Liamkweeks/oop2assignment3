@@ -195,14 +195,12 @@ class LinkedListTest {
 		this.linkedList.append("c");
 		this.linkedList.append("d");
 		
-		this.linkedList.delete(2);
-		
+		this.linkedList.delete(2);	
 		/**
 		 * Linked list should now be:
 		 * 
 		 * a -> b -> d
 		 */
-		
 		// Test the linked list is not empty.
 		assertFalse(this.linkedList.isEmpty());
 		
@@ -217,6 +215,8 @@ class LinkedListTest {
 		
 		// Test the fourth node value is d
 		assertEquals("d", this.linkedList.retrieve(2));
+		
+		
 	}
 	
 	/**
