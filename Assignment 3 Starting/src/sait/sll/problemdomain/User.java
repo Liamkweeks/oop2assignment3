@@ -20,7 +20,7 @@ public class User implements Serializable {
 	
 	private String email;
 	//change back to private after testing!!!
-	public String password;
+	public transient String password;
 	
 	/**
 	 * Creates a User object with specified arguments.

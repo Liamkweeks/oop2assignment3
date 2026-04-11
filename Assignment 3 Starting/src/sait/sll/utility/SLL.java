@@ -7,9 +7,13 @@ public class SLL implements LinkedListADT, Serializable
 	private Node head, tail;
 	private int size;
 	/**
-	 * 
+	 * Serialization ID for saving/loading list objects.
 	 */
 	private static final long serialVersionUID = 4207147896437339801L;
+
+	/**
+	 * Checks whether the list currently has zero elements.
+	 */
 	@Override
 	public boolean isEmpty()
 	{
@@ -25,6 +29,9 @@ public class SLL implements LinkedListADT, Serializable
 		return isEmpty;
 	}
 
+	/**
+	 * Removes all nodes from the list and resets size to 0.
+	 */
 	@Override
 	public void clear() 
 	{
@@ -32,6 +39,9 @@ public class SLL implements LinkedListADT, Serializable
 		size = 0;
 	}
 
+	/**
+	 * Adds a new node containing data to the end (tail) of the list.
+	 */
 	@Override
 	public void append(Object data) 
 	{
@@ -48,6 +58,9 @@ public class SLL implements LinkedListADT, Serializable
 		size++;
 	}
 
+	/**
+	 * Adds a new node containing data to the front (head) of the list.
+	 */
 	@Override
 	public void prepend(Object data) 
 	{
@@ -64,6 +77,10 @@ public class SLL implements LinkedListADT, Serializable
 		size++;
 	}
 
+	/**
+	 * Inserts a new node at the given index and shifts later elements right.
+	 * If index is out of bounds, throws IndexOutOfBoundsException.
+	 */
 	@Override
 	public void insert(Object data, int index) throws IndexOutOfBoundsException 
 	{
@@ -101,12 +118,16 @@ public class SLL implements LinkedListADT, Serializable
 		size++;
 	}
 
+	/**
+	 * Replaces the data at the given index with the provided value.
+	 * If index is out of bounds, throws IndexOutOfBoundsException.
+	 */
 	@Override
 	public void replace(Object data, int index) throws IndexOutOfBoundsException 
 	{
 		
 		
-		if(index < 0 || index > size)
+		if(index < 0 || index >= size)
 		{
 			throw new IndexOutOfBoundsException();
 			
@@ -122,14 +143,21 @@ public class SLL implements LinkedListADT, Serializable
 
 	}
 
+	/**
+	 * Returns the number of elements currently in the list.
+	 */
 	@Override
 	public int size() 
 	{
 		return size;
 	}
 
+	/**
+	 * Deletes the node at the given index and reconnects list links.
+	 * If index is out of bounds, throws IndexOutOfBoundsException.
+	 */
 	@Override
-	public void delete(int index)
+	public void delete(int index) throws IndexOutOfBoundsException
 	{
 		if(index < 0 || index >= size)
 		{
@@ -173,6 +201,12 @@ public class SLL implements LinkedListADT, Serializable
 			
 		}
 	}
+
+	/**
+	 * Retrieves and returns the data stored at the given index.
+	 * If index is out of bounds, throws IndexOutOfBoundsException.
+	 * Note: this method does not remove the node from the list.
+	 */
 	@Override
 	public Object retrieve(int index) throws IndexOutOfBoundsException 
 	{
@@ -190,35 +224,49 @@ public class SLL implements LinkedListADT, Serializable
 		return currentNode.getData();
 	}
 
+	/**
+	 * Finds the first index containing data, or returns -1 if not found.
+	 * If data is null, throws IllegalArgumentException.
+	 */
 	@Override
 	public int indexOf(Object data)
 	{
 		int currentIndex = 0;
 		Node currentNode = head;
-		while(currentNode.getData() != data)
+		while(currentNode != null && currentNode.getData() != data)
 		{
 			currentNode = currentNode.getNext();
 			currentIndex++;
 		}
+		if (currentNode == null) {
+			currentIndex = -1;
+		}
 		return currentIndex;
 	}
 
+	/**
+	 * Returns true if any node in the list contains matching data.
+	 */
 	@Override
 	public boolean contains(Object data) 
 	{
 		
 		Node currentNode = head;
-		while(currentNode != data)
+		while(currentNode != null)
 		{
-			System.out.println(currentNode.getData());
 			if(currentNode.getData().equals(data))
 			{
 				return true;
 			}
 			currentNode = currentNode.getNext();
+			
 		}
 		return false;
 	}
+	
+	/**
+	 * Prints all list elements from head to tail to the console.
+	 */
 	@Override
 	 public void display() {
 	        if(size == 0) {
@@ -233,6 +281,10 @@ public class SLL implements LinkedListADT, Serializable
 	            current = current.getNext();
 	        }
 	    }
+	
+	/**
+	 * Returns the head node reference of the list.
+	 */
 	@Override
 	public Node getHead()
 	{

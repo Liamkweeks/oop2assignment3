@@ -244,4 +244,100 @@ class LinkedListTest {
 		String value = (String) this.linkedList.retrieve(1);
 		assertEquals("b", value);
 	}
+	
+	/**
+	 * Tests indexOf returning -1 for value not being in the list
+	 * Tests if the list contains e
+	 */
+	@Test
+	void testValueNotInList() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+		this.linkedList.append("d");
+		
+		this.linkedList.display();
+		
+		int index = this.linkedList.indexOf("e");
+		assertEquals(-1, index);
+		
+		boolean contains = this.linkedList.contains("e");
+		assertFalse(contains);
+	}
+
+	/**
+	 * Tests retrieving a node at an invalid index.
+	 */
+	@Test
+	void testRetrieveInvalidIndex() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+		this.linkedList.append("d");
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.retrieve(-1);
+		});
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.retrieve(4);
+		});
+	}
+
+	/**
+	 * Tests inserting a node at an invalid index.
+	 */
+	@Test
+	void testInsertInvalidIndex() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+		this.linkedList.append("d");
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.insert("e", -1);
+		});
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.insert("e", 5);
+		});
+	}
+
+	/**
+	 * Tests replacing a node at an invalid index.
+	 */
+	@Test
+	void testReplaceInvalidIndex() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+		this.linkedList.append("d");
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.replace("e", -1);
+		});
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.replace("e", 4);
+		});
+	}
+
+	/**
+	 * Tests deleting a node at an invalid index.
+	 */
+	@Test
+	void testDeleteInvalidIndex() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+		this.linkedList.append("d");
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.delete(-1);
+		});
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.delete(4);
+		});
+	}
 }
